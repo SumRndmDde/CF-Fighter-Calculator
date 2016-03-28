@@ -48,48 +48,187 @@
 			//Fuuuuuuuuucking DONE!!!!!
 		};
 				
+		/*
 		//Function called when it's time to reload the data.
 		function getValues()
 		{
 			//Need to obtain info from element
 			var fighterValue = document.getElementById('Presets').value;
 			var levelValue = document.getElementById('level').value;
+			var levelResult = levelValue;
 
 			//Create variables for each necessary value:
 			var stats = fightersAndShit[fighterValue];
 
 			//Calculate the stats
 			//Formula is: [GR * (Lvl * 8)] + ISV
-			var str;
-			var dex;
-			var sta;
+			var str, dex, sta;
+			var oldStats = [];
 			if(levelValue >= 0 && levelValue <= 34) {
 				str = Math.ceil((stats[3] * (levelValue * 8)) + stats[0]);
 				dex = Math.ceil((stats[4] * (levelValue * 8)) + stats[1]);
 				sta = Math.ceil((stats[5] * (levelValue * 8)) + stats[2]);
+
+				//Old Stat Calcs
+				//atk
+				oldStats[0] = Math.floor(str / stats[6]);
+				//spd & eva
+				oldStats[1] = Math.floor(dex / stats[7]);
+				//hp & sp
+				oldStats[2] = Math.floor(sta / stats[8]);
 			} else {
 				str = '---';
 				dex = '---';
 				sta = '---';
-				levelValue = 'invalid'
+				for(var i = 0; i < 3; i++) {
+					oldStats[i] = '---'
+				}
+				levelResult = 'invalid';
 			}
 
-			levelValue = (levelValue == 'invalid') ? 'Invalid Level' : 'Level: +' + levelValue;
+			levelResult = (levelResult == 'invalid') ? 'Invalid Level' : 'Level: +' + levelResult;
 
 			document.getElementById('Results').style = "background-color:white;";
 
-			var finalResult = "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br>" + stats[9] + "<br><br>Mastery: " + stats[10] + "<br><br>" + levelValue + "<br><br>" + str + " STR" + "<br><br>" + dex + " DEX" + "<br><br>" + sta + " STA<br><br>";
+			var finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br>" + stats[9] + "<br><br>Mastery: " + stats[10] + "<br><br>" + levelResult + "<br><br>" + str + " STR<br>(+" + oldStats[0] + " ATK%)<br><br>" + dex + " DEX<br>(+" + oldStats[1] + " SPD/EVA)<br><br>" + sta + " STA<br>(+" + oldStats[2] + " HP%/SP%)<br><br>";
 
 			if(levelValue == 666) {
 				finalResult =  "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br> Screw you Illuminati!!!<br><br>";
+			} else if(levelValue == 420) {
+				finalResult =  "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br> 420 spelled backwards is 24.<br><br>";
 			}
 
 			document.getElementById('Results').innerHTML = finalResult;
 		}
+		*/
+
+		//Function called for when it's time to swap fighters 
+		function getValues2()
+		{
+			//Need to obtain info from element
+			var fighterValue = document.getElementById('Presets').value;
+			var levelValue = document.getElementById('level').value;
+			var levelResult = levelValue;
+			var fighterValue2 = document.getElementById('Presets2').value;
+			var levelValue2 = document.getElementById('level2').value;
+			var levelResult2 = levelValue2;
+
+			var currentSTR = document.getElementById('current_str').value;
+			var currentDEX = document.getElementById('current_dex').value;
+			var currentSTA = document.getElementById('current_sta').value;
+
+			//Create variables for each necessary value:
+			var stats = fightersAndShit[fighterValue];
+			var stats2 = fightersAndShit[fighterValue2];
+
+			//Calculate the stats
+			//Formula is: [GR * (Lvl * 8)] + ISV
+			var str, dex, sta, str2, dex2, sta2;
+			var baseSTR, baseDEX, baseSTA, newSTR, newDEX, newSTA;
+			var oldStats = [];
+			var newStats = [];
+			var completeStats = [];
+			var completeStats2 = [];
+			var completeDifference = [];
+			//if(true) {
+				str = Math.ceil((stats[3] * (levelValue * 8)) + stats[0]);
+				dex = Math.ceil((stats[4] * (levelValue * 8)) + stats[1]);
+				sta = Math.ceil((stats[5] * (levelValue * 8)) + stats[2]);
+				str2 = Math.ceil((stats2[3] * (levelValue2 * 8)) + stats2[0]);
+				dex2 = Math.ceil((stats2[4] * (levelValue2 * 8)) + stats2[1]);
+				sta2 = Math.ceil((stats2[5] * (levelValue2 * 8)) + stats2[2]);
+
+				//Find potential STR, DEX, STA
+				baseSTR = currentSTR - str;
+				baseDEX = currentDEX - dex;
+				baseSTA = currentSTA - sta;
+				newSTR = baseSTR + str2;
+				newDEX = baseDEX + dex2;
+				newSTA = baseSTA + sta2;
+
+				completeStats[0] = Math.floor(currentSTR / stats[6]);
+				completeStats[1] = Math.floor(currentDEX / stats[7]);
+				completeStats[2] = Math.floor(currentSTA / stats[8]);
+
+				completeStats2[0] = Math.floor(newSTR / stats2[6]);
+				completeStats2[1] = Math.floor(newDEX / stats2[7]);
+				completeStats2[2] = Math.floor(newSTA / stats2[8]);
+
+				completeDifference[0] = completeStats[0] - completeStats2[0];
+				completeDifference[1] = completeStats[1] - completeStats2[1];
+				completeDifference[2] = completeStats[2] - completeStats2[2];
+
+				//Old Stat Calcs
+				//atk
+				oldStats[0] = Math.floor(str / stats[6]);
+				//spd & eva
+				oldStats[1] = Math.floor(dex / stats[7]);
+				//hp & sp
+				oldStats[2] = Math.floor(sta / stats[8]);
+
+				//New Stat Calcs
+				//atk
+				newStats[0] = Math.floor(str2 / stats2[6]);
+				//spd & eva
+				newStats[1] = Math.floor(dex2 / stats2[7]);
+				//hp & sp
+				newStats[2] = Math.floor(sta2 / stats2[8]);
+			/*} else {
+				str = '---';
+				dex = '---';
+				sta = '---';
+				str2 = '---';
+				dex2 = '---';
+				sta2 = '---';
+				for(var i = 0; i < 3; i++) {
+					oldStats[i] = '---';
+				}
+				for(var i = 0; i < 3; i++) {
+					newStats[i] = '---';
+				}
+				for(var i = 0; i < 3; i++) {
+					completeStats[i] = '---';
+				}
+				for(var i = 0; i < 3; i++) {
+					completeStats2[i] = '---';
+				}
+				for(var i = 0; i < 3; i++) {
+					completeDifference[i] = '---';
+				}
+				baseSTR = '---';
+				baseDEX = '---';
+				baseSTA = '---';
+				newSTR = '---';
+				newDEX = '---';
+				newSTA = '---';
+				levelResult = 'invalid';
+				levelResult2 = 'invalid';
+			}*/
+
+			levelResult = (levelResult == 'invalid') ? 'Invalid Level' : 'Level: +' + levelResult;
+			levelResult2 = (levelResult2 == 'invalid') ? 'Invalid Level' : 'Level: +' + levelResult2;
+
+			document.getElementById('Results').style = "background-color:white;";
+			document.getElementById('Results2').style = "background-color:white;";
+
+			var finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br>" + stats[9] + "<br><br>Mastery: " + stats[10] + "<br><br>" + levelResult + "<br><br>" + str + " STR<br>(+" + oldStats[0] + " ATK%)<br><br>" + dex + " DEX<br>(+" + oldStats[1] + " SPD/EVA)<br><br>" + sta + " STA<br>(+" + oldStats[2] + " HP%/SP%)<br><br>";
+			var finalResult2 = "<br><font size='5' style='text-decoration: underline'>New Fighter Results:</font><br><br>" + stats2[9] + "<br><br>Mastery: " + stats2[10] + "<br><br>" + levelResult2 + "<br><br>" + str2 + " STR<br>(+" + newStats[0] + " ATK%)<br><br>" + dex2 + " DEX<br>(+" + newStats[1] + " SPD/EVA)<br><br>" + sta2 + " STA<br>(+" + newStats[2] + " HP%/SP%)<br><br>";
+			var finalResult3 = "<br><font size='5' style='text-decoration: underline'>Fighter Change Stat Gains:</font><br><br>" + completeDifference[0] + " ATK%<br><br>" + completeDifference[1] + " SPD/EVA<br><br>" + completeDifference[2] + " HP%/SP%<br><br>";
+
+			if(levelValue == 666) {
+				finalResult =  "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br> Screw you Illuminati!!!<br><br>";
+			} else if(levelValue == 420) {
+				finalResult =  "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br> 420 spelled backwards is 24.<br><br>";
+			}
+
+			document.getElementById('Results').innerHTML = finalResult;
+			document.getElementById('Results2').innerHTML = finalResult2;
+			document.getElementById('Results3').innerHTML = finalResult3;
+		}
 	</script>
 
 	<head>
-		<title>CF Damage Calculator</title>
+		<title>CF Fighter Calculator</title>
 		<link rel="stylesheet" href="desktop.css" media="screen" />
 		<link rel="stylesheet" href="mobile.css" media="only screen and (max-device width:480px)"/>
 		<meta name="viewport" content="width=320,user-scalable=false" />
@@ -106,7 +245,7 @@
 		</p>
 
 		<h1>Chaos Fighters<br>Fighter Calculator</h1>
-		<h1>Version Beta: 1.01</h1>
+		<h1>Version Beta: 1.10</h1>
 		<p style="background-color:white;">
 			<br>
 			Hello!
@@ -115,14 +254,13 @@
 			<br>
 			<br>
 			The following calculator will give the stats a certain
-			fighter will wield at a certain level.
+			fighter will wield at a certain level and see what
+			their affects would be on your direct stats.
 			<br>
 			<br>
-			Eventually, this calculator will be able to calculate the stat changes
-			that would occur from switching from one legendary to another.
-			<br>
-			<br>
-			Buuuuuuuut, for the time being, you'll just have to settle with this.
+			You can also use it to compare the stat changes that will
+			occur from switching from one legendary to another, or compare
+			and contrast the benefits of current legendaries.
 			<br>
 			<br>
 			Please enjoy!
@@ -143,12 +281,12 @@
 
 		<p style="background-color:#D692FF;">
 			<br>
-			<font size="5" style="text-decoration: underline">Fighter Info:</font>
+			<font size="5" style="text-decoration: underline">Current Fighter Info:</font>
 			<br>
 			<br>
 			Fighter:
 			<br>
-			<select id="Presets" onchange='getValues()'>
+			<select id="Presets" onchange='getValues2()'>
 				<option value="SimaYi">Sima Yi</option>
 				<option value="Toadmeister">Toadmeister</option>
 				<option value="Chrome">Chrome</option>
@@ -180,13 +318,81 @@
 			<br>
 			Fighter's Level (0-34):
 			<br>
-			<input type="tel" onchange="getValues()" id="level" name="level" value="27"><br>
+			<input type="tel" onchange="getValues2()" id="level" name="level" value="27"><br>
 			<br>
 		</p>
 
 		<p id="Results" style="background-color:white;">
+		</p>
+
+		<p style="background-color:#92C5FF;">
+			<br>
+			<font size="5" style="text-decoration: underline">New Fighter Info:</font>
+			<br>
+			<br>
+			Fighter:
+			<br>
+			<select id="Presets2" onchange='getValues2()'>
+				<option value="SimaYi">Sima Yi</option>
+				<option value="Toadmeister">Toadmeister</option>
+				<option value="Chrome">Chrome</option>
+				<option value="Merv">Merv</option>
+				<option value="Freya">Freya</option>
+				<option value="EvilGuanYu">Evil Guan Yu</option>
+				<option value="Jupiter">Jupiter</option>
+				<option value="Llamar">Llamar</option>
+				<option value="Muramasa">Muramasa</option>
+				<option value="Void">Void</option>
+				<option value="Altira">Altira</option>
+				<option value="Shifter">Shifter</option>
+				<option value="PirateDL">Pirate D. L</option>
+				<option value="Fleshy">Fleshy</option>
+				<option value="Wanderer">Wanderer</option>
+				<option value="Shinigami">Shinigami</option>
+				<option value="MetalX">MetalX</option>
+				<option value="Sif">Sif</option>
+				<option value="Thor">Thor</option>
+				<option value="ZhaoYun">Zhao Yun</option>
+				<option value="Hel">Hel</option>
+				<option value="EvilIvbu">Evil Ivbu</option>
+				<option value="Stryker">Stryker</option>
+				<option value="Susanoo">Susanoo</option>
+				<option value="Erza">Erza</option>
+				<option value="Beauty">Beauty</option>
+			</select>
+			<br>
+			<br>
+			New Fighter's Level (0-34):
+			<br>
+			<input type="tel" onchange="getValues2()" id="level2" name="level2" value="27"><br>
+			<br>
+		</p>
+
+		<p id="Results2" style="background-color:white;">
+		</p>
+
+		<p style="background-color:#EEFF92;">
+			<br>
+			<font size="5" style="text-decoration: underline">Current Stats:</font>
+			<br>
+			<br>
+			STR:
+			<br>
+			<input type="tel" onchange="getValues2()" id="current_str" name="current_str" value="1000"><br>
+			<br>
+			DEX:
+			<br>
+			<input type="tel" onchange="getValues2()" id="current_dex" name="current_dex" value="1000"><br>
+			<br>
+			STA:
+			<br>
+			<input type="tel" onchange="getValues2()" id="current_sta" name="current_sta" value="1000"><br>
+			<br>
+		</p>
+
+		<p id="Results3" style="background-color:white;">
 			<script>
-				getValues();
+				getValues2();
 			</script>
 		</p>
 		<br>
@@ -204,6 +410,12 @@
 		<br>
 		<br>
 		<p style="font-family:terminal;background-color:#6BFF98;">
+			<br>
+			<font size="3" style='text-decoration: underline'>[Version Beta 1.10]</font><br>
+			Added the ability to view multiple fighters<br>
+			Can now compare stats<br>
+			Can now see what stat gains will occur when switching<br>
+			Fixed TAB label<br>
 			<br>
 			<font size="3" style='text-decoration: underline'>[Version Beta 1.01]</font><br>
 			Data Loads Automatically<br>
