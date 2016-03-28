@@ -47,60 +47,6 @@
 			Beauty: [18, 36, 36, 1.4, 1.8, 1.8, 24, 9, 9, 'Beauty', 'Water']
 			//Fuuuuuuuuucking DONE!!!!!
 		};
-				
-		/*
-		//Function called when it's time to reload the data.
-		function getValues()
-		{
-			//Need to obtain info from element
-			var fighterValue = document.getElementById('Presets').value;
-			var levelValue = document.getElementById('level').value;
-			var levelResult = levelValue;
-
-			//Create variables for each necessary value:
-			var stats = fightersAndShit[fighterValue];
-
-			//Calculate the stats
-			//Formula is: [GR * (Lvl * 8)] + ISV
-			var str, dex, sta;
-			var oldStats = [];
-			if(levelValue >= 0 && levelValue <= 34) {
-				str = Math.ceil((stats[3] * (levelValue * 8)) + stats[0]);
-				dex = Math.ceil((stats[4] * (levelValue * 8)) + stats[1]);
-				sta = Math.ceil((stats[5] * (levelValue * 8)) + stats[2]);
-
-				//Old Stat Calcs
-				//atk
-				oldStats[0] = Math.floor(str / stats[6]);
-				//spd & eva
-				oldStats[1] = Math.floor(dex / stats[7]);
-				//hp & sp
-				oldStats[2] = Math.floor(sta / stats[8]);
-			} else {
-				str = '---';
-				dex = '---';
-				sta = '---';
-				for(var i = 0; i < 3; i++) {
-					oldStats[i] = '---'
-				}
-				levelResult = 'invalid';
-			}
-
-			levelResult = (levelResult == 'invalid') ? 'Invalid Level' : 'Level: +' + levelResult;
-
-			document.getElementById('Results').style = "background-color:white;";
-
-			var finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br>" + stats[9] + "<br><br>Mastery: " + stats[10] + "<br><br>" + levelResult + "<br><br>" + str + " STR<br>(+" + oldStats[0] + " ATK%)<br><br>" + dex + " DEX<br>(+" + oldStats[1] + " SPD/EVA)<br><br>" + sta + " STA<br>(+" + oldStats[2] + " HP%/SP%)<br><br>";
-
-			if(levelValue == 666) {
-				finalResult =  "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br> Screw you Illuminati!!!<br><br>";
-			} else if(levelValue == 420) {
-				finalResult =  "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br> 420 spelled backwards is 24.<br><br>";
-			}
-
-			document.getElementById('Results').innerHTML = finalResult;
-		}
-		*/
 
 		//Function called for when it's time to swap fighters 
 		function getValues2()
@@ -130,80 +76,50 @@
 			var completeStats = [];
 			var completeStats2 = [];
 			var completeDifference = [];
-			//if(true) {
-				str = Math.ceil((stats[3] * (levelValue * 8)) + stats[0]);
-				dex = Math.ceil((stats[4] * (levelValue * 8)) + stats[1]);
-				sta = Math.ceil((stats[5] * (levelValue * 8)) + stats[2]);
-				str2 = Math.ceil((stats2[3] * (levelValue2 * 8)) + stats2[0]);
-				dex2 = Math.ceil((stats2[4] * (levelValue2 * 8)) + stats2[1]);
-				sta2 = Math.ceil((stats2[5] * (levelValue2 * 8)) + stats2[2]);
 
-				//Find potential STR, DEX, STA
-				baseSTR = currentSTR - str;
-				baseDEX = currentDEX - dex;
-				baseSTA = currentSTA - sta;
-				newSTR = baseSTR + str2;
-				newDEX = baseDEX + dex2;
-				newSTA = baseSTA + sta2;
+			str = Math.ceil((stats[3] * (levelValue * 8)) + stats[0]);
+			dex = Math.ceil((stats[4] * (levelValue * 8)) + stats[1]);
+			sta = Math.ceil((stats[5] * (levelValue * 8)) + stats[2]);
+			str2 = Math.ceil((stats2[3] * (levelValue2 * 8)) + stats2[0]);
+			dex2 = Math.ceil((stats2[4] * (levelValue2 * 8)) + stats2[1]);
+			sta2 = Math.ceil((stats2[5] * (levelValue2 * 8)) + stats2[2]);
 
-				completeStats[0] = Math.floor(currentSTR / stats[6]);
-				completeStats[1] = Math.floor(currentDEX / stats[7]);
-				completeStats[2] = Math.floor(currentSTA / stats[8]);
+			//Find potential STR, DEX, STA
+			baseSTR = currentSTR - str;
+			baseDEX = currentDEX - dex;
+			baseSTA = currentSTA - sta;
+			newSTR = baseSTR + str2;
+			newDEX = baseDEX + dex2;
+			newSTA = baseSTA + sta2;
 
-				completeStats2[0] = Math.floor(newSTR / stats2[6]);
-				completeStats2[1] = Math.floor(newDEX / stats2[7]);
-				completeStats2[2] = Math.floor(newSTA / stats2[8]);
+			completeStats[0] = Math.floor(currentSTR / stats[6]);
+			completeStats[1] = Math.floor(currentDEX / stats[7]);
+			completeStats[2] = Math.floor(currentSTA / stats[8]);
 
-				completeDifference[0] = completeStats[0] - completeStats2[0];
-				completeDifference[1] = completeStats[1] - completeStats2[1];
-				completeDifference[2] = completeStats[2] - completeStats2[2];
+			completeStats2[0] = Math.floor(newSTR / stats2[6]);
+			completeStats2[1] = Math.floor(newDEX / stats2[7]);
+			completeStats2[2] = Math.floor(newSTA / stats2[8]);
 
-				//Old Stat Calcs
-				//atk
-				oldStats[0] = Math.floor(str / stats[6]);
-				//spd & eva
-				oldStats[1] = Math.floor(dex / stats[7]);
-				//hp & sp
-				oldStats[2] = Math.floor(sta / stats[8]);
+			//Stupid error :<
+			completeDifference[0] = completeStats2[0] - completeStats[0];
+			completeDifference[1] = completeStats2[1] - completeStats[1];
+			completeDifference[2] = completeStats2[2] - completeStats[2];
 
-				//New Stat Calcs
-				//atk
-				newStats[0] = Math.floor(str2 / stats2[6]);
-				//spd & eva
-				newStats[1] = Math.floor(dex2 / stats2[7]);
-				//hp & sp
-				newStats[2] = Math.floor(sta2 / stats2[8]);
-			/*} else {
-				str = '---';
-				dex = '---';
-				sta = '---';
-				str2 = '---';
-				dex2 = '---';
-				sta2 = '---';
-				for(var i = 0; i < 3; i++) {
-					oldStats[i] = '---';
-				}
-				for(var i = 0; i < 3; i++) {
-					newStats[i] = '---';
-				}
-				for(var i = 0; i < 3; i++) {
-					completeStats[i] = '---';
-				}
-				for(var i = 0; i < 3; i++) {
-					completeStats2[i] = '---';
-				}
-				for(var i = 0; i < 3; i++) {
-					completeDifference[i] = '---';
-				}
-				baseSTR = '---';
-				baseDEX = '---';
-				baseSTA = '---';
-				newSTR = '---';
-				newDEX = '---';
-				newSTA = '---';
-				levelResult = 'invalid';
-				levelResult2 = 'invalid';
-			}*/
+			//Old Stat Calcs
+			//atk
+			oldStats[0] = Math.floor(str / stats[6]);
+			//spd & eva
+			oldStats[1] = Math.floor(dex / stats[7]);
+			//hp & sp
+			oldStats[2] = Math.floor(sta / stats[8]);
+
+			//New Stat Calcs
+			//atk
+			newStats[0] = Math.floor(str2 / stats2[6]);
+			//spd & eva
+			newStats[1] = Math.floor(dex2 / stats2[7]);
+			//hp & sp
+			newStats[2] = Math.floor(sta2 / stats2[8]);
 
 			levelResult = (levelResult == 'invalid') ? 'Invalid Level' : 'Level: +' + levelResult;
 			levelResult2 = (levelResult2 == 'invalid') ? 'Invalid Level' : 'Level: +' + levelResult2;
@@ -211,19 +127,29 @@
 			document.getElementById('Results').style = "background-color:white;";
 			document.getElementById('Results2').style = "background-color:white;";
 
-			var finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br>" + stats[9] + "<br><br>Mastery: " + stats[10] + "<br><br>" + levelResult + "<br><br>" + str + " STR<br>(+" + oldStats[0] + " ATK%)<br><br>" + dex + " DEX<br>(+" + oldStats[1] + " SPD/EVA)<br><br>" + sta + " STA<br>(+" + oldStats[2] + " HP%/SP%)<br><br>";
-			var finalResult2 = "<br><font size='5' style='text-decoration: underline'>New Fighter Results:</font><br><br>" + stats2[9] + "<br><br>Mastery: " + stats2[10] + "<br><br>" + levelResult2 + "<br><br>" + str2 + " STR<br>(+" + newStats[0] + " ATK%)<br><br>" + dex2 + " DEX<br>(+" + newStats[1] + " SPD/EVA)<br><br>" + sta2 + " STA<br>(+" + newStats[2] + " HP%/SP%)<br><br>";
+			var finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br>" + stats[9] + "<br>Mastery: " + stats[10] + "<br>BMVs: " + stats[6] + "/" + stats[7] + "/" + stats[8] + "<br><br>" + levelResult + "<br><br>" + str + " STR<br>(+" + oldStats[0] + " ATK%)<br><br>" + dex + " DEX<br>(+" + oldStats[1] + " SPD/EVA)<br><br>" + sta + " STA<br>(+" + oldStats[2] + " HP%/SP%)<br><br>";
+			var finalResult2 = "<br><font size='5' style='text-decoration: underline'>New Fighter Results:</font><br><br>" + stats2[9] + "<br>Mastery: " + stats2[10] + "<br>BMVs: " + stats2[6] + "/" + stats2[7] + "/" + stats2[8] + "<br><br>" + levelResult2 + "<br><br>" + str2 + " STR<br>(+" + newStats[0] + " ATK%)<br><br>" + dex2 + " DEX<br>(+" + newStats[1] + " SPD/EVA)<br><br>" + sta2 + " STA<br>(+" + newStats[2] + " HP%/SP%)<br><br>";
 			var finalResult3 = "<br><font size='5' style='text-decoration: underline'>Fighter Change Stat Gains:</font><br><br>" + completeDifference[0] + " ATK%<br><br>" + completeDifference[1] + " SPD/EVA<br><br>" + completeDifference[2] + " HP%/SP%<br><br>";
 
-			if(levelValue == 666) {
-				finalResult =  "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br> Screw you Illuminati!!!<br><br>";
-			} else if(levelValue == 420) {
-				finalResult =  "<br><font size='5' style='text-decoration: underline'>Results:</font><br><br> 420 spelled backwards is 24.<br><br>";
+			if(levelValue == 666 || levelValue2 == 666) {
+				finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br> Screw you Illuminati!!!<br><br>";
+				finalResult2 = "<br><font size='5' style='text-decoration: underline'>New Fighter Results:</font><br><br> Get outta here!<br><br>";
+				finalResult3 = "<br><font size='5' style='text-decoration: underline'>Fighter Change Stat Gains:</font><br><br> Why you harass meh?<br><br>";
+			} else if(levelValue == 420 || levelValue2 == 420) {
+				finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br> 420 spelled backwards is 24.<br><br>";
+				finalResult2 = "<br><font size='5' style='text-decoration: underline'>New Fighter Results:</font><br><br> Has no other significance.<br><br>";
+				finalResult3 = "<br><font size='5' style='text-decoration: underline'>Fighter Change Stat Gains:</font><br><br> I promise.<br><br>"
 			}
 
 			document.getElementById('Results').innerHTML = finalResult;
 			document.getElementById('Results2').innerHTML = finalResult2;
 			document.getElementById('Results3').innerHTML = finalResult3;
+		}
+
+		//Makes the second level input value
+		//match the first one!
+		function matchLevels() {
+			document.getElementById('level2').value = document.getElementById('level').value;
 		}
 	</script>
 
@@ -269,9 +195,13 @@
 			- SumRndmDde aka. Robert
 			<br>
 			<br>
+			<br>
 			Wanna Support Me?<br>
 			Buy my LINE Sticker Pack!<br>
 			<a href="http://line.me/S/sticker/1251518">Random Face Dude Stickers</a><br>
+			<br>
+			Wanna Watch this Calculator get Created?<br>
+			<a href="https://www.youtube.com/watch?v=NnNyo_2e5WI">Creation of the Fighter Calc</a><br>
 			<br>
 		</p>
 
@@ -366,6 +296,9 @@
 			<br>
 			<input type="tel" onchange="getValues2()" id="level2" name="level2" value="27"><br>
 			<br>
+			<button type="button" onclick="matchLevels()">Match Current Level</button>
+			<br>
+			<br>
 		</p>
 
 		<p id="Results2" style="background-color:white;">
@@ -410,6 +343,11 @@
 		<br>
 		<br>
 		<p style="font-family:terminal;background-color:#6BFF98;">
+			<br>
+			<font size="3" style='text-decoration: underline'>[Version Beta 1.20]</font><br>
+			Added button to copy previous level<br>
+			Added link to video :p<br>
+			Fixed error which gave reverse results<br>
 			<br>
 			<font size="3" style='text-decoration: underline'>[Version Beta 1.10]</font><br>
 			Added the ability to view multiple fighters<br>
