@@ -105,6 +105,10 @@
 			completeDifference[1] = completeStats2[1] - completeStats[1];
 			completeDifference[2] = completeStats2[2] - completeStats[2];
 
+			for(var i = 0; i < completeDifference.length; i++) {
+				if(completeDifference[i] >= 0) completeDifference[i] = "+" + completeDifference[i];
+			}
+
 			//Old Stat Calcs
 			//atk
 			oldStats[0] = Math.floor(str / stats[6]);
@@ -129,7 +133,7 @@
 
 			var finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br>" + stats[9] + "<br>Mastery: " + stats[10] + "<br>BMVs: " + stats[6] + "/" + stats[7] + "/" + stats[8] + "<br><br>" + levelResult + "<br><br>" + str + " STR<br>(+" + oldStats[0] + " ATK%)<br><br>" + dex + " DEX<br>(+" + oldStats[1] + " SPD/EVA)<br><br>" + sta + " STA<br>(+" + oldStats[2] + " HP%/SP%)<br><br>";
 			var finalResult2 = "<br><font size='5' style='text-decoration: underline'>New Fighter Results:</font><br><br>" + stats2[9] + "<br>Mastery: " + stats2[10] + "<br>BMVs: " + stats2[6] + "/" + stats2[7] + "/" + stats2[8] + "<br><br>" + levelResult2 + "<br><br>" + str2 + " STR<br>(+" + newStats[0] + " ATK%)<br><br>" + dex2 + " DEX<br>(+" + newStats[1] + " SPD/EVA)<br><br>" + sta2 + " STA<br>(+" + newStats[2] + " HP%/SP%)<br><br>";
-			var finalResult3 = "<br><font size='5' style='text-decoration: underline'>Fighter Change Stat Gains:</font><br><br>" + completeDifference[0] + " ATK%<br><br>" + completeDifference[1] + " SPD/EVA<br><br>" + completeDifference[2] + " HP%/SP%<br><br>";
+			var finalResult3 = "<br><font size='5' style='text-decoration: underline'>Fighter Change Stat Gains:</font><br><br>" + completeDifference[0] + " ATK%<br><br>" + completeDifference[1] + " SPD/EVA<br><br>" + completeDifference[2] + " HP%/SP%<br><br><br>Want to know how much ATK/HP is gained from ATK%/HP%? Use the <a href='http://SumRndmDde.github.io/Base-Percent'>Base and Percent Calculator</a><br><br>";
 
 			if(levelValue == 666 || levelValue2 == 666) {
 				finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br> Screw you Illuminati!!!<br><br>";
@@ -171,7 +175,7 @@
 		</p>
 
 		<h1>Chaos Fighters<br>Fighter Calculator</h1>
-		<h1>Version Beta: 1.20</h1>
+		<h1>Version Beta: 1.21</h1>
 		<p style="background-color:white;">
 			<br>
 			Hello!
@@ -343,6 +347,10 @@
 		<br>
 		<br>
 		<p style="font-family:terminal;background-color:#6BFF98;">
+			<br>
+			<font size="3" style='text-decoration: underline'>[Version Beta 1.21]</font><br>
+			Added plus sign to positive changes<br>
+			Added link to Base/Percent Calculator<br>
 			<br>
 			<font size="3" style='text-decoration: underline'>[Version Beta 1.20]</font><br>
 			Added button to copy previous level<br>
