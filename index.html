@@ -48,9 +48,25 @@
 			//Fuuuuuuuuucking DONE!!!!!
 		};
 
+		function updateCustoms() {
+			if(document.getElementById('Presets').value == 'Custom') {
+				document.getElementById('Custom').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input type='tel' onchange='getValues2()' id='isv' name='isv' value='30, 40, 20'><br><br>Growth Rates:<br><input type='tel' onchange='getValues2()' id='gr' name='gr' value='1.5, 1.9, 1.4'><br><br>BMVs:<br><input type='tel' onchange='getValues2()' id='bmv' name='bmv' value='11, 8, 21'><br><br>";
+			} else {
+				document.getElementById('Custom').innerHTML = "";
+			}
+
+			if(document.getElementById('Presets2').value == 'Custom') {
+				document.getElementById('Custom2').innerHTML = "est";
+			} else {
+				document.getElementById('Custom2').innerHTML = "";
+			}
+		}
+
 		//Function called for when it's time to swap fighters 
-		function getValues2()
-		{
+		function getValues2() {
+			//Check for custom fighters
+			updateCustoms();
+
 			//Need to obtain info from element
 			var fighterValue = document.getElementById('Presets').value;
 			var levelValue = document.getElementById('level').value;
@@ -250,7 +266,8 @@
 			Fighter:
 			<br>
 			<select id="Presets" onchange='getValues2()'>
-				<option value="SimaYi">Sima Yi</option>
+				<option value="Custom">Custom Fighter</option>
+				<option value="SimaYi" selected>Sima Yi</option>
 				<option value="Toadmeister">Toadmeister</option>
 				<option value="Chrome">Chrome</option>
 				<option value="Merv">Merv</option>
@@ -281,8 +298,11 @@
 			<br>
 			Fighter's Level (0-34):
 			<br>
-			<input type="tel" onchange="getValues2()" id="level" name="level" value="27"><br>
+			<input type="Number" min="0" max="34" step="1" onchange="getValues2()" id="level" name="level" value="27"><br>
 			<br>
+		</p>
+
+		<p id="Custom" style="background-color:#D692FF;">
 		</p>
 
 		<p id="Results" style="background-color:white;">
@@ -296,6 +316,7 @@
 			Fighter:
 			<br>
 			<select id="Presets2" onchange='getValues2()'>
+				<option value="Custom">Custom Fighter</option>
 				<option value="SimaYi">Sima Yi</option>
 				<option value="Toadmeister" selected>Toadmeister</option>
 				<option value="Chrome">Chrome</option>
@@ -327,11 +348,14 @@
 			<br>
 			New Fighter's Level (0-34):
 			<br>
-			<input type="tel" onchange="getValues2()" id="level2" name="level2" value="27"><br>
+			<input type="Number" min="0" max="34" step="1" onchange="getValues2()" id="level2" name="level2" value="27"><br>
 			<br>
 			<button type="button" onclick="matchLevels()">Match Current Level</button>
 			<br>
 			<br>
+		</p>
+
+		<p id="Custom2" style="background-color:#92C5FF;">
 		</p>
 
 		<p id="Results2" style="background-color:white;">
