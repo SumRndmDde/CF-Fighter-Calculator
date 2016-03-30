@@ -19,6 +19,8 @@
 		//the stats.
 		var fightersAndShit = {
 			//Fighter Name: [ISVs(0-2), Growth Rates (3-5), BMVs(6-8), Name, Mastery]
+			Custom: [1, 1, 1, 1, 1, 1, 1, 1, 1, 'Custom', 'None'],
+			Custom2: [1, 1, 1, 1, 1, 1, 1, 1, 1, 'Custom', 'None'],
 			SimaYi: [32, 26, 30, 1.75, 1.4, 1.75, 8, 18, 11, 'Sima Yi', 'Fire'],
 			Toadmeister: [29, 37, 22, 1.65, 1.85, 1.45, 11, 9, 15, 'Toadmeister', 'Wind'],
 			Chrome: [33, 19, 36, 1.7, 1.3, 1.8, 13, 16, 8, 'Chrome', 'Earth'],
@@ -48,17 +50,38 @@
 			//Fuuuuuuuuucking DONE!!!!!
 		};
 
+		var toggleCustom1 = false;
+		var toggleCustom2 = false;
+
 		function updateCustoms() {
 			if(document.getElementById('Presets').value == 'Custom') {
-				document.getElementById('Custom').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input type='tel' onchange='getValues2()' id='isv' name='isv' value='30, 40, 20'><br><br>Growth Rates:<br><input type='tel' onchange='getValues2()' id='gr' name='gr' value='1.5, 1.9, 1.4'><br><br>BMVs:<br><input type='tel' onchange='getValues2()' id='bmv' name='bmv' value='11, 8, 21'><br><br>";
+				if(!toggleCustom1) {
+					if(fightersAndShit.Custom[10] == 'None') {
+						document.getElementById('Custom').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv' name='isv' value='30, 40, 20'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr' name='gr' value='1.6, 1.9, 1.5'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv' name='bmv' value='11, 8, 21'><br><br>";
+					} else {
+						var a = fightersAndShit.Custom;
+						document.getElementById('Custom').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv' name='isv' value='"+a[0]+", "+a[1]+", "+a[2]+"'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr' name='gr' value='"+a[3]+", "+a[4]+", "+a[5]+"'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv' name='bmv' value='"+a[6]+", "+a[7]+", "+a[8]+"'><br><br>";
+					}
+					toggleCustom1 = true;
+				}
 			} else {
 				document.getElementById('Custom').innerHTML = "";
+				if(toggleCustom1) toggleCustom1 = false;
 			}
 
-			if(document.getElementById('Presets2').value == 'Custom') {
-				document.getElementById('Custom2').innerHTML = "est";
+			if(document.getElementById('Presets2').value == 'Custom2') {
+				if(!toggleCustom2) {
+					if(fightersAndShit.Custom2[10] == 'None') {
+						document.getElementById('Custom2').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv2' name='isv2' value='30, 35, 20'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr2' name='gr2' value='1.6, 1.9, 1.4'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv2' name='bmv2' value='11, 8, 20'><br><br>";
+					} else {
+						var b = fightersAndShit.Custom2;
+						document.getElementById('Custom2').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv2' name='isv2' value='"+b[0]+", "+b[1]+", "+b[2]+"'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr2' name='gr2' value='"+b[3]+", "+b[4]+", "+b[5]+"'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv2' name='bmv2' value='"+b[6]+", "+b[7]+", "+b[8]+"'><br><br>";
+					}
+					toggleCustom2 = true;
+				}
 			} else {
 				document.getElementById('Custom2').innerHTML = "";
+				if(toggleCustom2) toggleCustom2 = false;
 			}
 		}
 
@@ -74,6 +97,22 @@
 			var fighterValue2 = document.getElementById('Presets2').value;
 			var levelValue2 = document.getElementById('level2').value;
 			var levelResult2 = levelValue2;
+
+			if(fighterValue == "Custom") {
+				var isvs = document.getElementById('isv').value.split(/\s*,\s*/).filter(function(value) { return !!value; });
+				var grs = document.getElementById('gr').value.split(/\s*,\s*/).filter(function(value) { return !!value; });
+				var bmvs = document.getElementById('bmv').value.split(/\s*,\s*/).filter(function(value) { return !!value; });
+
+				fightersAndShit["Custom"] = [Number(isvs[0]),Number(isvs[1]),Number(isvs[2]),Number(grs[0]),Number(grs[1]),Number(grs[2]),Number(bmvs[0]),Number(bmvs[1]),Number(bmvs[2]),"Custom","???"];
+			}
+
+			if(fighterValue2 == "Custom2") {
+				var isvs = document.getElementById('isv2').value.split(/\s*,\s*/).filter(function(value) { return !!value; });
+				var grs = document.getElementById('gr2').value.split(/\s*,\s*/).filter(function(value) { return !!value; });
+				var bmvs = document.getElementById('bmv2').value.split(/\s*,\s*/).filter(function(value) { return !!value; });
+
+				fightersAndShit["Custom2"] = [Number(isvs[0]),Number(isvs[1]),Number(isvs[2]),Number(grs[0]),Number(grs[1]),Number(grs[2]),Number(bmvs[0]),Number(bmvs[1]),Number(bmvs[2]),"Custom","???"];
+			}
 
 			var currentSTR = document.getElementById('current_str').value;
 			var currentDEX = document.getElementById('current_dex').value;
@@ -220,7 +259,7 @@
 		</p>
 
 		<h1>Chaos Fighters<br>Fighter Calculator</h1>
-		<h1>Version Beta: 1.31</h1>
+		<h1>Version Beta: 1.40</h1>
 		<p style="background-color:white;">
 			<br>
 			Hello!
@@ -298,7 +337,7 @@
 			<br>
 			Fighter's Level (0-34):
 			<br>
-			<input type="Number" min="0" max="34" step="1" onchange="getValues2()" id="level" name="level" value="27"><br>
+			<input type="tel" onchange="getValues2()" id="level" name="level" value="27"><br>
 			<br>
 		</p>
 
@@ -316,7 +355,7 @@
 			Fighter:
 			<br>
 			<select id="Presets2" onchange='getValues2()'>
-				<option value="Custom">Custom Fighter</option>
+				<option value="Custom2">Custom Fighter</option>
 				<option value="SimaYi">Sima Yi</option>
 				<option value="Toadmeister" selected>Toadmeister</option>
 				<option value="Chrome">Chrome</option>
@@ -348,7 +387,7 @@
 			<br>
 			New Fighter's Level (0-34):
 			<br>
-			<input type="Number" min="0" max="34" step="1" onchange="getValues2()" id="level2" name="level2" value="27"><br>
+			<input type="tel" onchange="getValues2()" id="level2" name="level2" value="27"><br>
 			<br>
 			<button type="button" onclick="matchLevels()">Match Current Level</button>
 			<br>
@@ -418,6 +457,10 @@
 		<br>
 		<br>
 		<p style="font-family:terminal;background-color:#6BFF98;">
+			<br>
+			<font size="3" style='text-decoration: underline'>[Version Beta 1.40]</font><br>
+			Added Custom Fighters<br>
+			Will still get complaints about lack of Jessi though T-T<br>
 			<br>
 			<font size="3" style='text-decoration: underline'>[Version Beta 1.31]</font><br>
 			Seperated Base ATK into MIN and MAX<br>
