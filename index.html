@@ -46,7 +46,16 @@
 			Stryker: [36, 22, 32, 1.9, 1.4, 1.7, 8, 18, 11, 'Stryker', 'Genjutsu'],
 			Susanoo: [22, 32, 36, 1.35, 1.8, 1.85, 17, 8, 11, 'Susanoo', 'Earth'],
 			Erza: [36, 25, 29, 1.8, 1.5, 1.7, 9, 14, 10, 'Erza', 'Genjutsu'],
-			Beauty: [18, 36, 36, 1.4, 1.8, 1.8, 24, 9, 9, 'Beauty', 'Water']
+			Beauty: [18, 36, 36, 1.4, 1.8, 1.8, 24, 9, 9, 'Beauty', 'Water'],
+			Cloud: [33, 20, 37, 1.75, 1.2, 1.95, 11, 19, 8, 'Cloud', 'Healing'],
+			DeathKnight: [30, 35, 25, 1.6, 1.9, 1.5, 11, 9, 14, 'Death Knight', 'Water'],
+			Pumpkin: [30, 8, 23, 1.5, 1.9, 1.6, 17, 8, 12, 'Pumpkin', 'Genjutsu'],
+			Nami: [36, 30, 24, 1.9, 1.7, 1.4, 9, 10, 16, 'Nami', 'Thunder'],
+			Chopper: [36, 32, 26, 1.8, 1.75, 1.4, 9, 11, 17, 'Chopper', 'Thunder'],
+			IronMan: [32, 22, 36, 1.7, 1.4, 1.9, 11, 18, 8, 'Iron Man', 'Cursed Seal Jutsu'],
+			Kellyn: [35, 30, 23, 1.75, 1.75, 1.4, 8, 12, 18, 'Kellyn', 'Thunder'],
+			DevilHunter: [37, 21, 30, 1.85, 1.4, 1.65, 8, 17, 12, 'Devil Hunter', 'Genjutsu'],
+			Rugalz: [30, 38, 22, 1.6, 1.9, 1.5, 11, 8, 17, 'Rugalz', 'Thunder']
 			//Fuuuuuuuuucking DONE!!!!!
 		};
 
@@ -267,7 +276,7 @@
 		</p>
 
 		<h1>Chaos Fighters<br>Fighter Calculator</h1>
-		<h1>Version Beta: 1.41</h1>
+		<h1>Version: 1.00</h1>
 		<p style="background-color:white;">
 			<br>
 			Hello!
@@ -314,56 +323,6 @@
 			<br>
 			<select id="Presets" onchange='getValues2()'>
 				<option value="Custom">Custom Fighter</option>
-				<option value="SimaYi" selected>Sima Yi</option>
-				<option value="Toadmeister">Toadmeister</option>
-				<option value="Chrome">Chrome</option>
-				<option value="Merv">Merv</option>
-				<option value="Freya">Freya</option>
-				<option value="EvilGuanYu">Evil Guan Yu</option>
-				<option value="Jupiter">Jupiter</option>
-				<option value="Llamar">Llamar</option>
-				<option value="Muramasa">Muramasa</option>
-				<option value="Void">Void</option>
-				<option value="Altira">Altira</option>
-				<option value="Shifter">Shifter</option>
-				<option value="PirateDL">Pirate D. L</option>
-				<option value="Fleshy">Fleshy</option>
-				<option value="Wanderer">Wanderer</option>
-				<option value="Shinigami">Shinigami</option>
-				<option value="MetalX">MetalX</option>
-				<option value="Sif">Sif</option>
-				<option value="Thor">Thor</option>
-				<option value="ZhaoYun">Zhao Yun</option>
-				<option value="Hel">Hel</option>
-				<option value="EvilIvbu">Evil Ivbu</option>
-				<option value="Stryker">Stryker</option>
-				<option value="Susanoo">Susanoo</option>
-				<option value="Erza">Erza</option>
-				<option value="Beauty">Beauty</option>
-			</select>
-			<br>
-			<br>
-			Fighter's Level (0-34):
-			<br>
-			<input type="tel" onchange="getValues2()" id="level" name="level" value="27"><br>
-			<br>
-		</p>
-
-		<p id="Custom" style="background-color:#D692FF;">
-		</p>
-
-		<p id="Results" style="background-color:white;">
-		</p>
-
-		<p style="background-color:#92C5FF;">
-			<br>
-			<font size="5" style="text-decoration: underline">New Fighter Info:</font>
-			<br>
-			<br>
-			Fighter:
-			<br>
-			<select id="Presets2" onchange='getValues2()'>
-				<option value="Custom2">Custom Fighter</option>
 				<option value="SimaYi">Sima Yi</option>
 				<option value="Toadmeister" selected>Toadmeister</option>
 				<option value="Chrome">Chrome</option>
@@ -390,6 +349,76 @@
 				<option value="Susanoo">Susanoo</option>
 				<option value="Erza">Erza</option>
 				<option value="Beauty">Beauty</option>
+				<option value="Cloud">Cloud</option>
+				<option value="Custom">== X-Fighting ==</option>
+				<option value="DeathKnight">Death Knight</option>
+				<option value="Pumpkin">Pumpkin</option>
+				<option value="Nami">Nami</option>
+				<option value="Chopper">Chopper</option>
+				<option value="IronMan">Iron Man</option>
+				<option value="Kellyn">Kellyn</option>
+				<option value="DevilHunter">Devil Hunter</option>
+				<option value="Rugalz">Rugalz</option>
+			</select>
+			<br>
+			<br>
+			Fighter's Level (0-34):
+			<br>
+			<input type="tel" onchange="getValues2()" id="level" name="level" value="27"><br>
+			<br>
+		</p>
+
+		<p id="Custom" style="background-color:#D692FF;">
+		</p>
+
+		<p id="Results" style="background-color:white;">
+		</p>
+
+		<p style="background-color:#92C5FF;">
+			<br>
+			<font size="5" style="text-decoration: underline">New Fighter Info:</font>
+			<br>
+			<br>
+			Fighter:
+			<br>
+			<select id="Presets2" onchange='getValues2()'>
+				<option value="Custom2">Custom Fighter</option>
+				<option value="SimaYi" selected>Sima Yi</option>
+				<option value="Toadmeister">Toadmeister</option>
+				<option value="Chrome">Chrome</option>
+				<option value="Merv">Merv</option>
+				<option value="Freya">Freya</option>
+				<option value="EvilGuanYu">Evil Guan Yu</option>
+				<option value="Jupiter">Jupiter</option>
+				<option value="Llamar">Llamar</option>
+				<option value="Muramasa">Muramasa</option>
+				<option value="Void">Void</option>
+				<option value="Altira">Altira</option>
+				<option value="Shifter">Shifter</option>
+				<option value="PirateDL">Pirate D. L</option>
+				<option value="Fleshy">Fleshy</option>
+				<option value="Wanderer">Wanderer</option>
+				<option value="Shinigami">Shinigami</option>
+				<option value="MetalX">MetalX</option>
+				<option value="Sif">Sif</option>
+				<option value="Thor">Thor</option>
+				<option value="ZhaoYun">Zhao Yun</option>
+				<option value="Hel">Hel</option>
+				<option value="EvilIvbu">Evil Ivbu</option>
+				<option value="Stryker">Stryker</option>
+				<option value="Susanoo">Susanoo</option>
+				<option value="Erza">Erza</option>
+				<option value="Beauty">Beauty</option>
+				<option value="Cloud">Cloud</option>
+				<option value="Custom2">== X-Fighting ==</option>
+				<option value="DeathKnight">Death Knight</option>
+				<option value="Pumpkin">Pumpkin</option>
+				<option value="Nami">Nami</option>
+				<option value="Chopper">Chopper</option>
+				<option value="IronMan">Iron Man</option>
+				<option value="Kellyn">Kellyn</option>
+				<option value="DevilHunter">Devil Hunter</option>
+				<option value="Rugalz">Rugalz</option>
 			</select>
 			<br>
 			<br>
@@ -455,16 +484,14 @@
 			<img src="SumRndmDdeLogo3.png" alt="SumRndmDde" width = 400px height = auto>
 		</p>
 		<br>
-		<p style="background-color:#00FF4D;">
-			<br>
-			Special Thanks to:<br>
-			<br>
-			<font size="3" style='text-decoration: underline'>No one :D</font><br>
-			<br>
-		</p>
-		<br>
 		<br>
 		<p style="font-family:terminal;background-color:#6BFF98;">
+			<br>
+			<font size="3" style='text-decoration: underline'>[Version 1.00]</font><br>
+			Official Release Version<br>
+			<br>
+			<font size="3" style='text-decoration: underline'>[Version Beta 1.42]</font><br>
+			X-Fighting Fighters added<br>
 			<br>
 			<font size="3" style='text-decoration: underline'>[Version Beta 1.41]</font><br>
 			Made Custom Fighters get saved<br>
