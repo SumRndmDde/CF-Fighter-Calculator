@@ -57,7 +57,7 @@
 			if(document.getElementById('Presets').value == 'Custom') {
 				if(!toggleCustom1) {
 					if(fightersAndShit.Custom[10] == 'None') {
-						document.getElementById('Custom').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv' name='isv' value='30, 40, 20'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr' name='gr' value='1.6, 1.9, 1.5'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv' name='bmv' value='11, 8, 21'><br><br>";
+						document.getElementById('Custom').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv' name='isv' value='12, 10, 26'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr' name='gr' value='0.6, 0.5, 1.27'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv' name='bmv' value='16, 19, 8'><br><br>";
 					} else {
 						var a = fightersAndShit.Custom;
 						document.getElementById('Custom').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv' name='isv' value='"+a[0]+", "+a[1]+", "+a[2]+"'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr' name='gr' value='"+a[3]+", "+a[4]+", "+a[5]+"'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv' name='bmv' value='"+a[6]+", "+a[7]+", "+a[8]+"'><br><br>";
@@ -72,7 +72,7 @@
 			if(document.getElementById('Presets2').value == 'Custom2') {
 				if(!toggleCustom2) {
 					if(fightersAndShit.Custom2[10] == 'None') {
-						document.getElementById('Custom2').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv2' name='isv2' value='30, 35, 20'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr2' name='gr2' value='1.6, 1.9, 1.4'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv2' name='bmv2' value='11, 8, 20'><br><br>";
+						document.getElementById('Custom2').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv2' name='isv2' value='23, 4, 23'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr2' name='gr2' value='1.15, 0.2, 1.15'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv2' name='bmv2' value='9, 121, 8'><br><br>";
 					} else {
 						var b = fightersAndShit.Custom2;
 						document.getElementById('Custom2').innerHTML = "<br><font size='5' style='text-decoration: underline'>Custom Fighter Stats</font><br><br>ISVs:<br><input  onchange='getValues2()' id='isv2' name='isv2' value='"+b[0]+", "+b[1]+", "+b[2]+"'><br><br>Growth Rates:<br><input  onchange='getValues2()' id='gr2' name='gr2' value='"+b[3]+", "+b[4]+", "+b[5]+"'><br><br>BMVs:<br><input  onchange='getValues2()' id='bmv2' name='bmv2' value='"+b[6]+", "+b[7]+", "+b[8]+"'><br><br>";
@@ -192,6 +192,14 @@
 			var finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br>" + stats[9] + "<br>Mastery: " + stats[10] + "<br>BMVs: " + stats[6] + "/" + stats[7] + "/" + stats[8] + "<br><br>" + levelResult + "<br><br>" + str + " STR<br>(+" + oldStats[0] + " ATK%)<br><br>" + dex + " DEX<br>(+" + oldStats[1] + " SPD/EVA)<br><br>" + sta + " STA<br>(+" + oldStats[2] + " HP%/SP%)<br><br>";
 			var finalResult2 = "<br><font size='5' style='text-decoration: underline'>New Fighter Results:</font><br><br>" + stats2[9] + "<br>Mastery: " + stats2[10] + "<br>BMVs: " + stats2[6] + "/" + stats2[7] + "/" + stats2[8] + "<br><br>" + levelResult2 + "<br><br>" + str2 + " STR<br>(+" + newStats[0] + " ATK%)<br><br>" + dex2 + " DEX<br>(+" + newStats[1] + " SPD/EVA)<br><br>" + sta2 + " STA<br>(+" + newStats[2] + " HP%/SP%)<br><br>";
 
+			if(fighterValue == "Custom") {
+				finalResult = "<br><font size='5' style='text-decoration: underline'>Current Fighter Results:</font><br><br>ISVs: " + stats[0] + "/" + stats[1] + "/" + stats[2] + "<br>Growth Rates: " + stats[3] + "/" + stats[4] + "/" + stats[5] + "<br>BMVs: " + stats[6] + "/" + stats[7] + "/" + stats[8] + "<br><br>" + levelResult + "<br><br>" + str + " STR<br>(+" + oldStats[0] + " ATK%)<br><br>" + dex + " DEX<br>(+" + oldStats[1] + " SPD/EVA)<br><br>" + sta + " STA<br>(+" + oldStats[2] + " HP%/SP%)<br><br>";
+			}
+
+			if(fighterValue2 == "Custom2") {
+				finalResult2 = "<br><font size='5' style='text-decoration: underline'>New Fighter Results:</font><br><br>ISVs: " + stats2[0] + "/" + stats2[1] + "/" + stats2[2] + "<br>Growth Rates: " + stats2[3] + "/" + stats2[4] + "/" + stats2[5] + "<br>BMVs: " + stats2[6] + "/" + stats2[7] + "/" + stats2[8] + "<br><br>" + levelResult2 + "<br><br>" + str2 + " STR<br>(+" + newStats[0] + " ATK%)<br><br>" + dex2 + " DEX<br>(+" + newStats[1] + " SPD/EVA)<br><br>" + sta2 + " STA<br>(+" + newStats[2] + " HP%/SP%)<br><br>";
+			}
+
 			var finalResult3;
 			if(baseMIN.length > 0 || baseMAX.length > 0 || baseHP.length > 0) {
 				finalResult3 = "<br><font size='5' style='text-decoration: underline'>Fighter Change Stat Gains:</font><br><br>";
@@ -259,7 +267,7 @@
 		</p>
 
 		<h1>Chaos Fighters<br>Fighter Calculator</h1>
-		<h1>Version Beta: 1.40</h1>
+		<h1>Version Beta: 1.41</h1>
 		<p style="background-color:white;">
 			<br>
 			Hello!
@@ -457,6 +465,10 @@
 		<br>
 		<br>
 		<p style="font-family:terminal;background-color:#6BFF98;">
+			<br>
+			<font size="3" style='text-decoration: underline'>[Version Beta 1.41]</font><br>
+			Made Custom Fighters get saved<br>
+			Changed Custom defaults to Ainu and Jessi<br>
 			<br>
 			<font size="3" style='text-decoration: underline'>[Version Beta 1.40]</font><br>
 			Added Custom Fighters<br>
