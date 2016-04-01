@@ -216,7 +216,7 @@
 					var min = (Number(baseMIN) * (completeDifference[0] / 100)).toFixed(2);
 					var max = (Number(baseMAX) * (completeDifference[0] / 100)).toFixed(2);
 					if(min >= 0) min = "+" + min;
-					if(max >= 0) max = "+" + min;
+					if(max >= 0) max = "+" + max;
 					finalResult3 += completeDifference[0] + " ATK%<br>(" + min + " MIN ATK)<br>(" + max + " MAX ATK)<br><br>";
 				} else {
 					finalResult3 += completeDifference[0] + " ATK%<br><br>"
@@ -276,7 +276,7 @@
 		</p>
 
 		<h1>Chaos Fighters<br>Fighter Calculator</h1>
-		<h1>Version: 1.00</h1>
+		<h1>Version: 1.01</h1>
 		<p style="background-color:white;">
 			<br>
 			Hello!
@@ -489,6 +489,9 @@
 		<br>
 		<br>
 		<p style="font-family:terminal;background-color:#6BFF98;">
+			<br>
+			<font size="3" style='text-decoration: underline'>[Version 1.01]</font><br>
+			Fixed error with Base Max<br>
 			<br>
 			<font size="3" style='text-decoration: underline'>[Version 1.00]</font><br>
 			Official Release Version<br>
